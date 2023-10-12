@@ -34,7 +34,7 @@ public class User implements UserDetails {
 
     @Column(name = "email", nullable = false, unique = true)
     @Max(message = "have to be not more than 50 symbols", value = 50)
-    private String email;                                             //выступает в роли username для авторизации
+    private String email;
 
     @Column(name = "password", nullable = false)
     @Max(message = "have to be not more than 30 symbols", value = 30)
@@ -66,8 +66,9 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(int id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public User(int id, String name, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
+        this.name = name;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
