@@ -24,6 +24,10 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "username", nullable = false)
+    @Max(message = "username have to contain not more then 30 symbols", value = 30)
+    private String userName;
+
     @Column(name = "name", nullable = false)
     @Max(message = "have to be not more than 30 symbols", value = 30)
     private String name;
@@ -66,9 +70,9 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(int id, String name, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public User(int id, String userName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
