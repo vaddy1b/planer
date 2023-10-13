@@ -27,7 +27,13 @@ public class CustomUserDetailsServise implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return null;
+        User user = userRepository.findUserByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("These username doesn`t exist"));
+        return build(user);
+    }
+
+    public User loadUserById(Long id){
+        return userRepository.findUserById(id).orElse(null);
     }
 
     public static User build(User user) {
@@ -39,7 +45,6 @@ public class CustomUserDetailsServise implements UserDetailsService {
 
         return new User(
                 user.getId(),
-                user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities
