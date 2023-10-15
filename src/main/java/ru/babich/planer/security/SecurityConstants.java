@@ -12,6 +12,6 @@ public class SecurityConstants {
 
     public static final String CONTENT_TYPE = "app/json";
 
-    public static final Long EXPIRATION_TIME = 600_000l;
+    public static final Long EXPIRATION_TIME = 600_000l;            //~10 min of waiting
 
 }
