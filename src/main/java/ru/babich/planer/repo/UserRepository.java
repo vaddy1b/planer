@@ -8,14 +8,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PlannerRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User,Long> {
 
     @Override
     List<User> findAll();
 
     @Override
-    Optional<User> findById(Long aLong);
+    Optional<User> findById(Long userId);
 
-    @Override
-    void delete(User entity);
+    Optional <User> findUserByName(String name);
+    Optional <User> findUserByEmail(String email);
+
 }
