@@ -52,6 +52,6 @@ release - когда собрали нужные фичи в разработч�
 
 ## Developers
 
-- [vaddy_b](GitHub Profile Link)
+- [vaddy_b](https://github.com/vaddy1b)
 
 ## License
