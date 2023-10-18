@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import ru.babich.planer.payload.InvalidLoginResponce;
+import ru.babich.planer.payload.response.InvalidLoginResponse;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class JwtAuthentificationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
-            InvalidLoginResponce invalidLoginResponce = new InvalidLoginResponce();
+            InvalidLoginResponse invalidLoginResponce = new InvalidLoginResponse();
             String jsonLoginReponce = new Gson().toJson(invalidLoginResponce);
 
             response.setContentType(SecurityConstants.CONTENT_TYPE);
