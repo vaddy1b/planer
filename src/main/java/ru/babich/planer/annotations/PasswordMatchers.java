@@ -12,6 +12,4 @@ import java.lang.annotation.*;
 public @interface PasswordMatchers {
 
     String message() default "Password don`t match. Check it one more time";
-
-
 }
