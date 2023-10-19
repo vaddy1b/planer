@@ -11,4 +11,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Pattern(regexp = "^(?=.*[/&$@%№!])(?=.*\\\\d)(?!.*[():;_\\\\s])[^():;_\\\\s]{6,50}$")
 public @interface ValidPassword {
+
+    String message() default "Password doesn`t equal to format";
 }
