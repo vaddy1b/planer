@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @Max(message = "have to be not more than 30 symbols", value = 30)
     private String surname;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true,updatable = false)
     @Max(message = "have to be not more than 50 symbols", value = 50)
     private String email;                                             //выступает в роли username для авторизации
 
@@ -47,8 +47,11 @@ public class User implements UserDetails {
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
+    @Column(name = "role", nullable = false)
+    private String role;
+
     @OneToOne
-    private Role role;
+    private Role userRole;
 
     @OneToMany(targetEntity = Task.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Task> taskList;
@@ -57,13 +60,16 @@ public class User implements UserDetails {
     @OneToMany(targetEntity = WorkingPlace.class, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     private List<WorkingPlace> workingPlace;
 
-    public User(String name, String surname, String email, String password, LocalDateTime localDate, Role role) {
+    public User(String name, String surname, String email, String password, LocalDateTime localDate, String role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.localDate = localDate;
         this.role = role;
+
+        userRole = new Role();
+        setRole(role);
     }
 
     public User(int id, String email, String password, Collection<? extends GrantedAuthority> authorities) {

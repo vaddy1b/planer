@@ -9,6 +9,7 @@ import lombok.Data;
 public class Role {
 
     public static final String ROLE_SEQ = "role_seq";
+    public static final String DEF_ROLE = "CONTROLLER";
 
     @Id
     @SequenceGenerator(
