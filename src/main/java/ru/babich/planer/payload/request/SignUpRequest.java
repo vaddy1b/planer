@@ -9,6 +9,7 @@ import ru.babich.planer.annotations.ValidEmail;
 import ru.babich.planer.annotations.ValidPassword;
 
 @Data
+@PasswordMatchers
 public class SignUpRequest {
 
 
@@ -25,7 +26,6 @@ public class SignUpRequest {
     private String password;
 
     @NotEmpty(message = "Repeat the password")
-    @PasswordMatchers
     private String confirmedPassword;
 
     @NotEmpty(message = "Please enter your name")
