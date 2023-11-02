@@ -1,12 +1,15 @@
 package ru.babich.planer.enity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "roles")
+@Data
 public class Role {
 
     public static final String ROLE_SEQ = "role_seq";
+    public static final String DEF_ROLE = "CONTROLLER";
 
     @Id
     @SequenceGenerator(
