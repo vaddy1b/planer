@@ -18,13 +18,13 @@ import ru.babich.planer.payload.response.JwtTokenSuccessResponse;
 import ru.babich.planer.payload.response.MessageResponse;
 import ru.babich.planer.security.JwtTokenProvider;
 import ru.babich.planer.security.SecurityConstants;
-import ru.babich.planer.servise.UserServise;
+import ru.babich.planer.service.UserService;
 import ru.babich.planer.validations.ResponseErrorValidator;
 
 @CrossOrigin
 @RestController
 @PreAuthorize(value = "{admin,controller}")
-@RequestMapping("/auth")
+@RequestMapping(ControllerConstant.AUTH_PATH)
 public class AuthController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserServise userServise;
+    private UserService userServis§e;
 
 
     public ResponseEntity<Object> authenticationUser(@Valid @RequestBody LoginRequest loginRequest,

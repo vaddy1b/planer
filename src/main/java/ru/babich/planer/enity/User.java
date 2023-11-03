@@ -14,7 +14,9 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(name = "cons_user_email_unique", columnNames = {"name"})})
+@Table(name = "employee", uniqueConstraints =
+        {@UniqueConstraint(name = "cons_user_email_unique", columnNames = {"email"}),
+        @UniqueConstraint(name ="cons_user_username_unique", columnNames = "username")})
 @NoArgsConstructor
 @Data
 @ToString
@@ -22,7 +24,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     @Max(message = "have to be not more than 30 symbols", value = 30)
@@ -31,6 +33,10 @@ public class User implements UserDetails {
     @Column(name = "surname", nullable = false)
     @Max(message = "have to be not more than 30 symbols", value = 30)
     private String surname;
+
+    @Column(name = "username",updatable = false, unique = true, nullable = false)
+    @Max(message = "have to be not more than 30 symbols", value = 30)
+    private String username;
 
     @Column(name = "email", nullable = false, unique = true,updatable = false)
     @Max(message = "have to be not more than 50 symbols", value = 50)
@@ -47,22 +53,27 @@ public class User implements UserDetails {
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "user_role", nullable = false)
     private String role;
 
     @OneToOne
     private Role userRole;
 
-    @OneToMany(targetEntity = Task.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(targetEntity = Task.class,
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "user")
     private List<Task> taskList;
 
 
-    @OneToMany(targetEntity = WorkingPlace.class, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(targetEntity = WorkingPlace.class,
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     private List<WorkingPlace> workingPlace;
 
-    public User(String name, String surname, String email, String password, LocalDateTime localDate, String role) {
+    public User(String name, String surname,String username, String email, String password, LocalDateTime localDate, String role) {
         this.name = name;
         this.surname = surname;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.localDate = localDate;
@@ -72,7 +83,7 @@ public class User implements UserDetails {
         setRole(role);
     }
 
-    public User(int id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public User(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -96,7 +107,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return username;
     }
 
     @Override

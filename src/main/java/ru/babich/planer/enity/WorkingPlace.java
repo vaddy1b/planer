@@ -12,7 +12,7 @@ import java.util.List;
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "cons_working_place_name_unique",
-                        columnNames = {"name"}
+                        columnNames = {"working_place_name"}
                 )
         })
 @NoArgsConstructor
@@ -35,7 +35,7 @@ public class WorkingPlace {
     )
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "working_place_name", nullable = false)
     private String workingPlaceName;
 
     @ManyToOne(targetEntity = User.class)

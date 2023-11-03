@@ -1,4 +1,4 @@
-package ru.babich.planer.servise;
+package ru.babich.planer.service;
 
 public interface PlannerServise {
 }
