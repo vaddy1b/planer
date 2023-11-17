@@ -27,9 +27,6 @@ public class SignUpRequest {
     @NotEmpty(message = "Repeat the password")
     private String confirmedPassword;
 
-    @NotEmpty(message = "Please choose your role")
-    private String role = "CONTROLLER";
-
     @NotEmpty(message = "Please enter your name")
     private String name;
 

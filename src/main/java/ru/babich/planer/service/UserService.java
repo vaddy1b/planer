@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.babich.planer.enity.Role;
 import ru.babich.planer.enity.User;
 import ru.babich.planer.enity.dto.UserDTO;
 import ru.babich.planer.exception.UserExistException;
@@ -39,7 +40,7 @@ public class UserService {
         user.setSurname(userIn.getSurname());
         user.setSurname(userIn.getUsername());
         user.setPassword(passwordEncoder.encode(userIn.getPassword()));
-        user.setRole(userIn.getRole());
+        user.setRole(Role.DEF_ROLE);
 
         try{
             LOG.info("Saving user {}", userIn.getEmail());
@@ -55,13 +56,17 @@ public class UserService {
 
     public User updateUser(UserDTO dto, Principal principal){
 
-        User user = getUserByPrincipal(principal);
+        User user = getUser(principal);
 
         user.setId(dto.getId());
         user.setName(dto.getName());
         user.setSurname(dto.getSurname());
 
         return userRepository.save(user);
+    }
+
+    public User getUser(Principal principal){
+        return getUserByPrincipal(principal);
     }
 
 

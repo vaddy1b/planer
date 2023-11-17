@@ -37,7 +37,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserService userServis§e;
+    private UserService userServise;
 
 
     public ResponseEntity<Object> authenticationUser(@Valid @RequestBody LoginRequest loginRequest,
