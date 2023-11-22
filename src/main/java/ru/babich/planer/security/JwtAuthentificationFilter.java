@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import ru.babich.planer.enity.User;
-import ru.babich.planer.servise.CustomUserDetailsServise;
+import ru.babich.planer.service.CustomUserDetailsServise;
 
 import java.io.IOException;
 import java.util.Collections;

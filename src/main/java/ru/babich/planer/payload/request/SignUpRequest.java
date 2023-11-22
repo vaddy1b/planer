@@ -12,7 +12,6 @@ import ru.babich.planer.annotations.ValidPassword;
 @PasswordMatchers
 public class SignUpRequest {
 
-
     @Email(message = "It should have email format")
     @NotBlank(message = "Email is required")
     @ValidEmail
@@ -32,7 +31,14 @@ public class SignUpRequest {
     private String name;
 
     @NotEmpty(message = "Please enter your lastname")
-    private String lastname;
+    private String surname;
 
-
+    public SignUpRequest(String email, String username, String password, String confirmedPassword, String name, String surname) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.confirmedPassword = confirmedPassword;
+        this.name = name;
+        this.surname = surname;
+    }
 }

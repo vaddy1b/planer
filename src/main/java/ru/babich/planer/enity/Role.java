@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role")
 @Data
 public class Role {
 
@@ -24,7 +24,7 @@ public class Role {
     )
     private Long id;
 
-    @Column(name="name")
+    @Column(name="role_name")
     private String roleName;
 
     @OneToOne
