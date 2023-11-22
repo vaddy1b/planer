@@ -22,18 +22,18 @@ public class Task {
     @Column(name = "description") //описание особенностей и задач на смену
     private String description;
 
-    @Column(name = "date", updatable = false)
+    @Column(name = "date_of_adding", updatable = false)
     @JsonFormat( pattern = "dd-mm-yyyy")
     private LocalDateTime dateOfAdding;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     private WorkingPlace workingPlace;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     @PrePersist
-    private void creatingOfUser() {
+    private void creatingOfTask() {
         this.dateOfAdding = LocalDateTime.now();
     }
 
