@@ -68,7 +68,7 @@ public class User implements UserDetails {
 
     @OneToMany(targetEntity = WorkingPlace.class,
             cascade = {CascadeType.DETACH, CascadeType.REFRESH})
-    private List<WorkingPlace> workingPlace;
+    private List<WorkingPlace> workingPlaces;
 
     public User(String name, String surname,String username, String email, String password, LocalDateTime localDate, String role) {
         this.name = name;

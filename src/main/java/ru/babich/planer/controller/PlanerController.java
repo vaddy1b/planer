@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/mainpage")
+@RequestMapping("${MAIN_PATH}")
 public class PlanerController {
 
 }

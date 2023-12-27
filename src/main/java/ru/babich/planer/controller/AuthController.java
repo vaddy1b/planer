@@ -24,7 +24,7 @@ import ru.babich.planer.validations.ResponseErrorValidator;
 @CrossOrigin
 @RestController
 @PreAuthorize(value = "{admin,controller}")
-@RequestMapping(ControllerConstant.AUTH_PATH)
+@RequestMapping("${AUTH_PATH}")
 public class AuthController {
 
     @Autowired

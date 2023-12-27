@@ -32,7 +32,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User createUser(SignUpRequest userIn) throws UserExistException{
+    public User createUser(SignUpRequest userIn) throws UserExistException {
         User user = new User();
 
         user.setEmail(userIn.getEmail());
@@ -42,19 +42,19 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userIn.getPassword()));
         user.setRole(Role.DEF_ROLE);
 
-        try{
+        try {
             LOG.info("Saving user {}", userIn.getEmail());
             return userRepository.save(user);
-        } catch (Exception e){
+        } catch (Exception e) {
             LOG.error("Can`t create this user, try another parameters", e.getMessage());
-            throw new UserExistException("The user with email" +user.getEmail()+
+            throw new UserExistException("The user with email" + user.getEmail() +
                     " has already exist. Check  your credentials");
         }
 
     }
 
 
-    public User updateUser(UserDTO dto, Principal principal){
+    public User updateUser(UserDTO dto, Principal principal) {
 
         User user = getUser(principal);
 
@@ -65,14 +65,18 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUser(Principal principal){
+    public User getUser(Principal principal) {
         return getUserByPrincipal(principal);
     }
 
 
-    public User getUserByPrincipal(Principal principal){
+    public User getUserByPrincipal(Principal principal) {
         String username = principal.getName();
         return userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    public User getCurrentUserById(Long id) {
+        return userRepository.findUserById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

@@ -22,8 +22,6 @@ import java.util.*;
 @Data
 public class TaskService {
 
-    //TODO:  придумать логику присвоения задачи к рабочему месту
-    //TODO:  придумать логику присвоения задачи пользователю, а от него как вариант на раб место
 
     public static final Logger LOG = LoggerFactory.getLogger(TaskService.class);
     private final UserRepository userRepository;
@@ -45,7 +43,7 @@ public class TaskService {
             task.setUser(user);
             task.setDescription(dto.getDescription());
             task.setDateOfAdding(LocalDateTime.now());
-            task.setWorkingPlace((WorkingPlace) user.getWorkingPlace());
+            task.setWorkingPlace(dto.getWorkingPlace());
 
             List<Task> taskList = user.getTaskList();
             taskList.add(task);
@@ -106,7 +104,7 @@ public class TaskService {
         User user = getUserByPrincipal(principal);
 
         try {
-            List<WorkingPlace> workingPlaceListOfUser = user.getWorkingPlace();
+            List<WorkingPlace> workingPlaceListOfUser = user.getWorkingPlaces();
 
             if (workingPlaceListOfUser.size() < 1) {
                 WorkingPlace workingPlace = workingPlaceListOfUser.get(0);
